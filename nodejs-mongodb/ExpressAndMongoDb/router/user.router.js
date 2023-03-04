@@ -25,7 +25,7 @@ router.post("/api/users-file", upload.single("image"),async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         age: req.body.age,
-        image: req.file.path
+        image: req.file?.path
     });
     try {
        const result = await newUser.save();
