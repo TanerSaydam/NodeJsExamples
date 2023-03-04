@@ -1,0 +1,1 @@
+exports.uri = "mongodb+srv://tsaydam:1@testdb.al972pq.mongodb.net/?retryWrites=true&w=majority";
