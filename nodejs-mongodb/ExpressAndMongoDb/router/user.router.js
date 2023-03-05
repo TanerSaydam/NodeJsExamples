@@ -3,6 +3,27 @@ const router = express.Router();
 const User = require("../models/user");
 const { v4:uuidv4}  = require("uuid");
 const multer = require("multer");
+const jwt = require("jsonwebtoken");
+
+const secretKey = "SecretKeySecretKeySecretKeySecretKeySecretKey1234";
+
+function verifyToken(req,res,next){
+    const token = req.headers.authorization;
+    
+    if(!token){
+        return res.status(401).json({error: "Yetkilendirme hatası"});
+    }
+
+    try {
+        const decoded = jwt.verify(token, secretKey, {
+            ignoreExpiration: true
+        });
+        console.log(decoded);
+        next();
+    } catch (error) {
+        res.status(401).json({error: "Geçersiz token"});
+    }
+}
 
 //Storage
 const storage = multer.diskStorage({

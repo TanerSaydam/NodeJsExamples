@@ -3,8 +3,12 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const uri = require("../connection").uri;
-const userRouter = require("./router/user.router");
 
+const userRouter = require("./router/user.router");
+const mailRouter = require("./router/mail.router");
+const tokenRouter = require("./router/token.router");
+const auhtRouter = require("./router/auth.router");
+const productRouter = require("./router/product.router");
 
 //Body parser middleware
 app.use(express.json());
@@ -24,7 +28,14 @@ mongoose.connect(uri, {
 
 //Users Endpoints
 app.use("/", userRouter);
-
+//Mails Endpoints
+app.use("/", mailRouter);
+//Token Endpoints
+app.use("/api/", tokenRouter);
+//Auth Endpoints
+app.use("/api/", auhtRouter);
+//Product Endpoints
+//app.use("/", productRouter);
 
 //Server'ı dinlemeye başla
 const port = process.env.PORT || 3000;
