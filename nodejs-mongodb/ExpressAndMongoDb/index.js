@@ -9,6 +9,7 @@ const mailRouter = require("./router/mail.router");
 const tokenRouter = require("./router/token.router");
 const auhtRouter = require("./router/auth.router");
 const productRouter = require("./router/product.router");
+const categoryRouter = require("./router/category.router");
 
 //Body parser middleware
 app.use(express.json());
@@ -35,7 +36,9 @@ app.use("/api/", tokenRouter);
 //Auth Endpoints
 app.use("/api/", auhtRouter);
 //Product Endpoints
-//app.use("/", productRouter);
+app.use("/api/", productRouter);
+//Category Endpoints
+app.use("/api/", categoryRouter);
 
 //Server'ı dinlemeye başla
 const port = process.env.PORT || 3000;

@@ -29,34 +29,34 @@ router.post("/auth/login", async (req, res) => {
     }
 });
 
-const Product = require("../models/product");
-const { query } = require("express");
+// const Product = require("../models/product");
+// const { query } = require("express");
 
-router.get("/products", async (req, res)=>{
-    const {pageNumber, pageSize} = req.query;
-    // for (let i = 0; i < 200; i++) {
-    //     let newProduct = new Product({
-    //         name: "Product " + i
-    //     });
+// router.get("/products", async (req, res)=>{
+//     const {pageNumber, pageSize} = req.query;
+//     // for (let i = 0; i < 200; i++) {
+//     //     let newProduct = new Product({
+//     //         name: "Product " + i
+//     //     });
 
-    //     await newProduct.save();
-    // }
+//     //     await newProduct.save();
+//     // }
 
-    const totalPageCount = Math.ceil(await Product.count() / pageSize);
+//     const totalPageCount = Math.ceil(await Product.count() / pageSize);
 
-    const model = {
-        data: await Product.find({})
-        .skip((pageNumber - 1) * pageSize)
-        .limit(pageSize),
-        pageNumber: pageNumber,
-        pageSize: pageSize,
-        isFirstPage: pageNumber == 1 ? true : false,
-        totalPageCount: totalPageCount,
-        isLastPage: pageNumber == totalPageCount ? true : false
-    }
+//     const model = {
+//         data: await Product.find({})
+//         .skip((pageNumber - 1) * pageSize)
+//         .limit(pageSize),
+//         pageNumber: pageNumber,
+//         pageSize: pageSize,
+//         isFirstPage: pageNumber == 1 ? true : false,
+//         totalPageCount: totalPageCount,
+//         isLastPage: pageNumber == totalPageCount ? true : false
+//     }
 
-    res.json(model);
-});
+//     res.json(model);
+// });
 
 module.exports = router;
 
